@@ -10,6 +10,18 @@ function imageReady(image: HTMLImageElement, event: Event) {
 		image.style.height = '90%';
 	}
 
+	const body = document.body;
+
+	const background = document.createElement('div');
+	background.style.backgroundColor = 'rgba(0,0,0,0.5)';
+	background.style.position = 'fixed';
+	background.style.top = '0';
+	background.style.right = '0';
+	background.style.bottom = '0';
+	background.style.left = '0';
+	background.insertBefore(image, background.lastChild);
+
+	body.insertBefore(background, body.lastChild);
 }
 
 function expand(event: MouseEvent) {

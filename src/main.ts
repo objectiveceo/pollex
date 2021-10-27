@@ -3,6 +3,13 @@ function imageReady(image: HTMLImageElement, event: Event) {
 	image.style.top = '50%';
 	image.style.left = '50%';
 	image.style.transform = 'translate(-50%, -50%)';
+
+	if (image.width > image.height) {
+		image.style.width = '90%';
+	} else {
+		image.style.height = '90%';
+	}
+
 }
 
 function expand(event: MouseEvent) {

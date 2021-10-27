@@ -36,16 +36,17 @@ function expand(event: MouseEvent) {
 	image.src = dest;
 }
 
-function foo(element: Element) {
+function setupThumbnails(element: Element) {
 	const htmlElement = element as HTMLElement;
 	if (!htmlElement)
 		return;
 	htmlElement.addEventListener('click', expand);
+	htmlElement.style.cursor = 'pointer';
 }
 
 function main() {
 	const thumbs = document.querySelectorAll('[data-pollex-dest]');
-	thumbs.forEach(foo);
+	thumbs.forEach(setupThumbnails);
 }
 
 window.addEventListener('DOMContentLoaded', main);

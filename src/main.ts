@@ -1,3 +1,7 @@
+function closeImage(background: HTMLDivElement, event: MouseEvent) {
+	background.remove();
+}
+
 function imageReady(image: HTMLImageElement, event: Event) {
 	image.style.position = 'fixed';
 	image.style.top = '50%';
@@ -20,6 +24,7 @@ function imageReady(image: HTMLImageElement, event: Event) {
 	background.style.bottom = '0';
 	background.style.left = '0';
 	background.insertBefore(image, background.lastChild);
+	background.addEventListener('click', (e) => closeImage(background, e));
 
 	body.insertBefore(background, body.lastChild);
 }

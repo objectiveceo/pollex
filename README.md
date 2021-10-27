@@ -1,0 +1,2 @@
+# pollex
+Simple thumbnail expander

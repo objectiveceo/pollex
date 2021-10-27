@@ -2,8 +2,11 @@
   "name": "pollex",
   "version": "1.0.0",
   "description": "Simple thumbnail expansion",
-  "main": "index.js",
+  "source": "src/main.ts",
+  "main": "dist/pollex.js",
   "scripts": {
+    "build": "parcel build",
+    "watch": "parcel watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

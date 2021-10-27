@@ -1,0 +1,19 @@
+{
+  "name": "pollex",
+  "version": "1.0.0",
+  "description": "Simple thumbnail expansion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/objectiveceo/pollex.git"
+  },
+  "author": "Grayson Hansard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/objectiveceo/pollex/issues"
+  },
+  "homepage": "https://github.com/objectiveceo/pollex#readme"
+}

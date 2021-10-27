@@ -4,11 +4,11 @@ interface ElementCreator {
 	createDiv: () => HTMLDivElement,
 }
 
-function closeImage(background: HTMLDivElement, event: MouseEvent) {
+function closeImage(background: HTMLDivElement) {
 	background.remove();
 }
 
-function imageReady(image: HTMLImageElement, event: Event, background: HTMLDivElement) {
+function imageReady(image: HTMLImageElement, background: HTMLDivElement) {
 	image.style.position = 'fixed';
 	image.style.top = '50%';
 	image.style.left = '50%';
@@ -19,15 +19,15 @@ function imageReady(image: HTMLImageElement, event: Event, background: HTMLDivEl
 	} else {
 		image.style.height = '90%';
 	}
-	background.addEventListener('click', (e) => closeImage(background, e));
+	background.addEventListener('click', () => closeImage(background));
 	background.insertBefore(image, background.lastChild);
 }
 
-function expand(element: HTMLElement, event: MouseEvent, creator: ElementCreator) {
+function expand(element: HTMLElement, creator: ElementCreator) {
 	const dest = element.dataset.pollexDest;
 	const image = creator.createImg();
 	const background = creator.createDiv();
-	image.onload = (e) => imageReady(image, e, background);
+	image.onload = (e) => imageReady(image, background);
 	image.src = dest;
 
 	background.style.backgroundColor = 'rgba(0,0,0,0.5)';
@@ -43,7 +43,7 @@ function setupThumbnails(element: Element, creator: ElementCreator) {
 	const htmlElement = element as HTMLElement;
 	if (!htmlElement)
 		return;
-	htmlElement.addEventListener('click', (e) => expand(htmlElement, e, creator));
+	htmlElement.addEventListener('click', () => expand(htmlElement, creator));
 	htmlElement.style.cursor = 'pointer';
 }
 

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/objectiveceo/pollex/issues"
   },
-  "homepage": "https://github.com/objectiveceo/pollex#readme"
+  "homepage": "https://github.com/objectiveceo/pollex#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0"
+  }
 }

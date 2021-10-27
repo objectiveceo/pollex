@@ -1,8 +1,14 @@
+interface ElementCreator {
+	body: HTMLElement,
+	createImg: () => HTMLImageElement,
+	createDiv: () => HTMLDivElement,
+}
+
 function closeImage(background: HTMLDivElement, event: MouseEvent) {
 	background.remove();
 }
 
-function imageReady(image: HTMLImageElement, event: Event) {
+function imageReady(image: HTMLImageElement, event: Event, creator: ElementCreator) {
 	image.style.position = 'fixed';
 	image.style.top = '50%';
 	image.style.left = '50%';
@@ -14,9 +20,7 @@ function imageReady(image: HTMLImageElement, event: Event) {
 		image.style.height = '90%';
 	}
 
-	const body = document.body;
-
-	const background = document.createElement('div');
+	const background = creator.createDiv();
 	background.style.backgroundColor = 'rgba(0,0,0,0.5)';
 	background.style.position = 'fixed';
 	background.style.top = '0';
@@ -26,27 +30,32 @@ function imageReady(image: HTMLImageElement, event: Event) {
 	background.insertBefore(image, background.lastChild);
 	background.addEventListener('click', (e) => closeImage(background, e));
 
-	body.insertBefore(background, body.lastChild);
+	creator.body.insertBefore(background, creator.body.lastChild);
 }
 
-function expand(event: MouseEvent) {
-	const dest = this.dataset.pollexDest;
-	const image = document.createElement('img');
-	image.onload = (e) => imageReady(image, e);
+function expand(element: HTMLElement, event: MouseEvent, creator: ElementCreator) {
+	const dest = element.dataset.pollexDest;
+	const image = creator.createImg();
+	image.onload = (e) => imageReady(image, e, creator);
 	image.src = dest;
 }
 
-function setupThumbnails(element: Element) {
+function setupThumbnails(element: Element, creator: ElementCreator) {
 	const htmlElement = element as HTMLElement;
 	if (!htmlElement)
 		return;
-	htmlElement.addEventListener('click', expand);
+	htmlElement.addEventListener('click', (e) => expand(htmlElement, e, creator));
 	htmlElement.style.cursor = 'pointer';
 }
 
 function main() {
 	const thumbs = document.querySelectorAll('[data-pollex-dest]');
-	thumbs.forEach(setupThumbnails);
+	const creator = {
+		body: document.body,
+		createImg: () => document.createElement('img'),
+		createDiv: () => document.createElement('div'),
+	}
+	thumbs.forEach((x) => setupThumbnails(x, creator));
 }
 
 window.addEventListener('DOMContentLoaded', main);

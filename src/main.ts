@@ -1,9 +1,15 @@
+function imageReady(image: HTMLImageElement, event: Event) {
+	image.style.position = 'fixed';
+	image.style.top = '50%';
+	image.style.left = '50%';
+	image.style.transform = 'translate(-50%, -50%)';
+}
+
 function expand(event: MouseEvent) {
 	const dest = this.dataset.pollexDest;
 	const image = document.createElement('img');
+	image.onload = (e) => imageReady(image, e);
 	image.src = dest;
-	const body = document.body;
-	body.insertBefore(image, body.lastChild);
 }
 
 function foo(element: Element) {

@@ -8,7 +8,7 @@ function closeImage(background: HTMLDivElement, event: MouseEvent) {
 	background.remove();
 }
 
-function imageReady(image: HTMLImageElement, event: Event, creator: ElementCreator) {
+function imageReady(image: HTMLImageElement, event: Event, background: HTMLDivElement) {
 	image.style.position = 'fixed';
 	image.style.top = '50%';
 	image.style.left = '50%';
@@ -19,25 +19,24 @@ function imageReady(image: HTMLImageElement, event: Event, creator: ElementCreat
 	} else {
 		image.style.height = '90%';
 	}
+	background.addEventListener('click', (e) => closeImage(background, e));
+	background.insertBefore(image, background.lastChild);
+}
 
+function expand(element: HTMLElement, event: MouseEvent, creator: ElementCreator) {
+	const dest = element.dataset.pollexDest;
+	const image = creator.createImg();
 	const background = creator.createDiv();
+	image.onload = (e) => imageReady(image, e, background);
+	image.src = dest;
+
 	background.style.backgroundColor = 'rgba(0,0,0,0.5)';
 	background.style.position = 'fixed';
 	background.style.top = '0';
 	background.style.right = '0';
 	background.style.bottom = '0';
 	background.style.left = '0';
-	background.insertBefore(image, background.lastChild);
-	background.addEventListener('click', (e) => closeImage(background, e));
-
 	creator.body.insertBefore(background, creator.body.lastChild);
-}
-
-function expand(element: HTMLElement, event: MouseEvent, creator: ElementCreator) {
-	const dest = element.dataset.pollexDest;
-	const image = creator.createImg();
-	image.onload = (e) => imageReady(image, e, creator);
-	image.src = dest;
 }
 
 function setupThumbnails(element: Element, creator: ElementCreator) {

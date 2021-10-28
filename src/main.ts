@@ -14,6 +14,7 @@ function imageReady(image: HTMLImageElement, background: HTMLDivElement) {
 	image.style.top = '50%';
 	image.style.left = '50%';
 	image.style.transform = 'translate(-50%, -50%)';
+	image.className = 'pollex-image';
 
 	if (image.width > image.height) {
 		image.style.width = '90%';

@@ -48,6 +48,7 @@ function createCaption(element: HTMLElement, creator: ElementCreator): HTMLParag
 	}
 
 	const para = creator.createParagraph();
+	para.className = 'pollex-caption';
 	para.innerHTML = caption;
 	para.style.position = 'absolute';
 	para.style.bottom = '0';

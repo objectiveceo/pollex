@@ -23,7 +23,7 @@ function imageReady(image: HTMLImageElement, background: HTMLDivElement) {
 	}
 
 	if (background.lastChild) {
-		image.style.paddingBottom = `${(background.lastChild as HTMLElement).offsetHeight + 16}px`;
+		image.style.marginBottom = `${(background.lastChild as HTMLElement).offsetHeight + 16}px`;
 	}
 
 	background.addEventListener('click', () => closeImage(background));

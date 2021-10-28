@@ -72,7 +72,7 @@ function expand(element: HTMLElement, creator: ElementCreator) {
 	creator.body.insertBefore(background, creator.body.lastChild);
 }
 
-function setupThumbnails(element: Element, creator: ElementCreator) {
+function setupThumbnail(element: Element, creator: ElementCreator) {
 	const htmlElement = element as HTMLElement;
 	if (!htmlElement) {
 		return;
@@ -89,7 +89,7 @@ function main() {
 		createDiv: () => document.createElement('div'),
 		createParagraph: () => document.createElement('p'),
 	}
-	thumbs.forEach((x) => setupThumbnails(x, creator));
+	thumbs.forEach((x) => setupThumbnail(x, creator));
 }
 
 window.addEventListener('DOMContentLoaded', main);
